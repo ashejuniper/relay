@@ -1,6 +1,6 @@
 {
-  "name": "@scarzebra/relay",
-  "version": "0.1.0",
+  "name": "@ashejuniper/relay",
+  "version": "0.1.0-alpha",
   "description": "♥ Relay | Relay a LAN server running on one device to the LAN of another device. ♥",
   "main": "src/index.js",
   "bin": {
@@ -10,9 +10,9 @@
     "test": "tests"
   },
   "scripts": {
-    "build-release": "rm -rf release/ && pkg . --out-path release/bin/@scarzebra/ && ./scripts/dist/rename.sh $npm_package_name $npm_package_version",
+    "build-release": "rm -rf release/ && pkg . --out-path release/bin/ && ./scripts/dist/rename.sh $npm_package_name $npm_package_version",
     "download-binaries": "echo $npm_path",
-    "prepublishOnly": "{ \n pnpm build-release || npm build-release \n } && { \n scripts/dist/zip.sh $npm_package_name $npm_package_version relay \n } && { \n pnpm test-native \n }",
+    "prepublishOnly": "{ \n pnpm build-release || npm build-release \n } && { \n scripts/dist/zip.sh $npm_package_name $npm_package_version relay \n }",
     "test": "jest"
   },
   "repository": {
