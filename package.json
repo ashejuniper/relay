@@ -1,0 +1,66 @@
+{
+  "name": "@scarzebra/relay",
+  "version": "0.1.0",
+  "description": "♥ Relay | Relay a LAN server running on one device to the LAN of another device. ♥",
+  "main": "src/index.js",
+  "bin": {
+    "relay": "./bin/relay.js"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build-release": "rm -rf release/ && pkg . --out-path release/bin/@scarzebra/ && ./scripts/dist/rename.sh $npm_package_name $npm_package_version",
+    "download-binaries": "echo $npm_path",
+    "prepublishOnly": "{ \n pnpm build-release || npm build-release \n } && { \n scripts/dist/zip.sh $npm_package_name $npm_package_version relay \n } && { \n pnpm test-native \n }",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scarzebra/relay.git"
+  },
+  "keywords": [
+    "beacon",
+    "network",
+    "networking",
+    "node",
+    "p2p",
+    "peer-to-peer",
+    "relay",
+    "server"
+  ],
+  "author": "Scar Zebra <https://patreon.com/scarzebra>",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/scarzebra/relay/issues"
+  },
+  "homepage": "https://patreon.com/scarzebra/relay#readme",
+  "dependencies": {
+    "@hyper-cmd/lib-keys": "https://github.com/holepunchto/hyper-cmd-lib-keys#v0.0.2",
+    "@hyper-cmd/lib-net": "https://github.com/holepunchto/hyper-cmd-lib-net#v0.0.8",
+    "@hyper-cmd/lib-utils": "https://github.com/holepunchto/hyper-cmd-lib-utils#v0.0.2",
+    "hyperdht": "^6.6.1",
+    "minimist": "^1.2.8",
+    "nullstream": "^2.0.1",
+    "random-port-promise": "^1.0.1",
+    "sodium-universal": "^4.0.0"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "jest": "^29.6.1",
+    "pkg": "^5.8.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "pkg": {
+    "scripts": "*.js",
+    "assets": "assets/**/*",
+    "targets": [
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-win-x64"
+    ],
+    "outPath": "dist/"
+  }
+}
