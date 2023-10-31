@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
+echo Renaming $1-{OS_NAME} to $1-$2-{OS_NAME}-{ARCHITECTURE}
+
+mkdir -p release/bin/@scarzebra
+
 # Rename executables.
-mv dist/bin/$1-linux    dist/bin/$1-$2-linux-x64
-mv dist/bin/$1-macos    dist/bin/$1-$2-macos-x64
-mv dist/bin/$1-win.exe  dist/bin/$1-$2-win32-x64.exe
+mv release/bin/$1-linux    release/bin/$1-$2#linux-x64
+mv release/bin/$1-macos    release/bin/$1-$2#darwin-x64
+mv release/bin/$1-win.exe  release/bin/$1-$2#win32-x64.exe
